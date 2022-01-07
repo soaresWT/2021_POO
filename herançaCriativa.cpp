@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <cstdlib>
 using namespace std;
 
 class Personagem{
@@ -38,6 +40,19 @@ public:
         vivo = false;
         cout << "O personagem morreu" << endl;
     }
+    void falas(){
+        vector<string> falas;
+        falas[0] = "Peguei voce";
+        falas[1] = "Morra com essa";
+        falas[2] = "Quais são as suas ultimas palavras?";
+        falas[3] = "Você está morto";
+        falas[4] = "Cheque Mate";
+        falas[5] = "Game over";
+
+        //int numero = rand() % falas.size();
+
+        cout << "oi" << endl;
+    }
 };
 class Guerreiro: public Personagem{
 private:
@@ -53,8 +68,10 @@ public:
     }
     void atacar(Personagem* inimigo){
         inimigo->RecebeDano(ataque);
+        falas();
     }
 };
+
 class Mago: public Personagem{
 private:
     int vida = 65;
@@ -70,21 +87,27 @@ public:
     }
     void atacar(Personagem* inimigo){
         inimigo->RecebeDano(ataque);
+        cout << "Mago atacou" << endl;
     }
-    void feitico(Personagem* inimigo){
+    void lancarfeitico(Personagem* inimigo){
         inimigo->RecebeDano(feitico);
-        this -> mana -= feitico;
-}
+        this -> mana -= 25;
+        falas();
+    }
 };
 
 int main(){
-    Personagem jorge = Personagem{"Jorge"};
-    Guerreiro guerreiro = Guerreiro{"Guerreiro"};
-    Mago mago = Mago{"Mago"};
-    guerreiro.atacar(&mago);
-    mago.atacar(&guerreiro);
-    guerreiro.atacar(&jorge);
-    cout << jorge.getVida() << endl;
+ 
+    
+    Mago cleiton = Mago{"cleiton"};
+
+    Guerreiro jose = Guerreiro{"jose"};
+
+    cleiton.atacar(&jose);
+
+    cout<< cleiton.getVida() << endl;
+   
+
 
     return 0;
 }
@@ -94,4 +117,10 @@ int main(){
 //atk normal é 10
 //chance de critico 25%
 //dano critico ele é 1.2 x atk
+//Peguei voce
+//Morra com essa
+//Quais são as suas ultimas palavras?
+//Você está morto
+//Cheque Mate
+//Game over
 
