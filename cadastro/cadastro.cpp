@@ -212,29 +212,29 @@ public:
 
 int main(){
 
-    banco bank;
+    banco inter;
 
-    bank.adicionarCliente("Joao");
-    bank.adicionarCliente("Maria");
-    bank.adicionarCliente("Jose");
+    inter.adicionarCliente("Joao");
+    inter.adicionarCliente("Maria");
+    inter.adicionarCliente("Jose");
 
-    bank.deposito(0, 100);
-    bank.deposito(1, 200);
-    bank.deposito(2, 300);
+    inter.deposito(0, 100);
+    inter.deposito(1, 200);
+    inter.deposito(2, 300);
 
-    cout << bank;
+    cout << inter << endl;
 
-    bank.saque(0, 50);
-    bank.saque(1, 100);
-    bank.saque(2, 150);
+    inter.saque(0, 50);
+    inter.saque(1, 100);
+    inter.saque(2, 150);
 
-    cout << bank;
+    cout << inter;
 
-    bank.transferir(0, 1, 50);
-    bank.transferir(1, 2, 100);
-    bank.transferir(2, 0, 150);
+    inter.transferir(0, 1, 50);
+    inter.transferir(1, 2, 100);
+    inter.transferir(2, 0, 150);
 
-    cout << bank;
+    cout << inter;
 
    
 }
