@@ -11,7 +11,6 @@ std::string to_string(T t) {
 }
 
 
-
 using namespace std;
 class fone{
 private:
@@ -159,7 +158,7 @@ int main(){
     agenda1.addContato(contato3);
     //agenda1.apagarContato(contato1);
     agenda1.listarContatos();
-    agenda1.search("be");
+    agenda1.search("cla");
     cout<< '\n' << agenda1;
 
     

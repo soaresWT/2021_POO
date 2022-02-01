@@ -19,7 +19,7 @@ public:
 
     static bool validate(std::string number) {
         for (const auto &n : number) {
-            if ((n != '(' && n != ')') && (n > '9' || n < '0')) {
+            if (n > '9' || n < '0') {
                 return false;
             }
         }

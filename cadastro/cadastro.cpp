@@ -214,9 +214,9 @@ int main(){
 
     banco inter;
 
-    inter.adicionarCliente("Joao");
-    inter.adicionarCliente("Maria");
-    inter.adicionarCliente("Jose");
+    inter.adicionarCliente("raposo");
+    inter.adicionarCliente("dora");
+    inter.adicionarCliente("aventureira");
 
     inter.deposito(0, 100);
     inter.deposito(1, 200);
