@@ -156,9 +156,9 @@ int main(){
     fone fone1("fone1","1112345678");
     fone fone2("fone2","2212345678");
     fone fone3("fone3","3312345678");
-    contato contato1("belinha",{std::make_shared<fone>(fone1)});
-    contato contato2("antonia",{std::make_shared<fone>(fone2)});
-    contato contato3("beto",{std::make_shared<fone>(fone3)});
+    contato contato1("jubileu",{std::make_shared<fone>(fone1)});
+    contato contato2("claclau",{std::make_shared<fone>(fone2)});
+    contato contato3("robson",{std::make_shared<fone>(fone3)});
     cout<<contato1<<endl;
     cout<<contato2<<endl;
     cout<<contato3<<endl;
