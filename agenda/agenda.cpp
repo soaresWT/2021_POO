@@ -11,6 +11,7 @@ std::string to_string(T t) {
 }
 
 
+
 using namespace std;
 class fone{
 private:
@@ -110,17 +111,7 @@ public:
             cout<<contato<<'\n';
         }
     }
-    /*
-    vector<contato> procurarContato(string nome){
-        vector<contato> contatos_;
-        for(auto contato : this->contatos){
-            if(contato.getNome() == nome){
-                contatos_.push_back(contato);
-                cout<<'\n'<<"Contato encontrado:"<< contato << '\n';
-            }
-        }
-        return contatos_;
-    }*/
+    
     void search(string pattern){
         vector<contato> ResultadoSearch;
         for (auto contato : this->contatos) {
@@ -142,7 +133,7 @@ public:
     }
     friend ostream& operator<<(ostream& os, const agenda& agenda) {
         if (agenda.contatos.empty()) {
-            os << "[AGENDA VAZIA]\n";
+            os << "agenda vazia\n";
         } else {
             for (auto contato : agenda.contatos) {
                 os << contato << "\n";
