@@ -217,6 +217,7 @@ int main(){
     inter.adicionarCliente("raposo");
     inter.adicionarCliente("dora");
     inter.adicionarCliente("aventureira");
+    inter.adicionarCliente("dora");
 
     inter.deposito(0, 100);
     inter.deposito(1, 200);
