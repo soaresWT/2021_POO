@@ -2,6 +2,7 @@
 #include <map>
 #include <memory>
 #include <vector>
+#include <exception>
 
 using namespace std;
 class conta {
@@ -29,22 +30,22 @@ public:
 
     virtual void deposito(float valor) {
         if (valor > 0) { this->saldo += valor; }
-        else{ cout << "Valor invalido" << endl; }
+        else{  }
     }
     virtual void saque(float valor){
         if(valor > 0 && valor <= this->saldo){ this->saldo -= valor; }
-        else{ cout << "Valor invalido" << endl; }
+        else{ throw invalid_argument("Valor invalido");}
     }
     
     virtual void transferencia (shared_ptr<conta> contaDestino, float valor){
             
             if(valor < 0 || valor > this->saldo){ 
-                cout << "Valor invalido" << endl; 
+               throw invalid_argument("Valor invalido");
             }
             
             else{
                 if(contaDestino == nullptr){
-                    cout << "conta de destino não encontrada" << endl;
+                   throw invalid_argument("Conta nao existe");
                 }
                 else{
                     this->saldo -= valor;
@@ -124,7 +125,7 @@ private:
         auto it = this->contas.find(id);
 
         if (it == this->contas.end()){
-            cout << "conta não existe" << endl;
+           throw invalid_argument("Conta nao existe");
         }
 
         return it->second;
@@ -151,7 +152,7 @@ public:
 
     void adicionarCliente(string nome){
         if(existe_nome(nome)){
-            cout << "Cliente já existe" << endl;
+           throw invalid_argument("Cliente ja existe");
         }else{
             cliente client(nome);
             ContaCorrente cc(Next_id, nome);
@@ -171,7 +172,7 @@ public:
         if(existe_id(id)){
             this->get_conta(id)->deposito(valor);
         }else{
-            cout << "Conta não existe" << endl;
+           throw invalid_argument("Conta nao existe");
         }
     }
 
@@ -179,7 +180,7 @@ public:
         if(existe_id(id) && valor > 0){
             this->get_conta(id)->saque(valor);
         }else{
-            cout << "Conta não existe ou valor invalido" << endl;
+              throw invalid_argument("Conta nao existe");
         }
     }
 
@@ -187,7 +188,7 @@ public:
         if(existe_id(idOrigem) && existe_id(idDestino) && valor > 0){
             this->get_conta(idOrigem)->transferencia(this->get_conta(idDestino), valor);
         }else{
-            cout << "Conta não existe ou valor invalido" << endl;
+            throw invalid_argument("Conta nao existe");
         }
     }
     void atualizarMensal() {
@@ -211,32 +212,34 @@ public:
 };
 
 int main(){
+    try{
+        banco inter;
 
-    banco inter;
+        inter.adicionarCliente("raposo");
+        inter.adicionarCliente("dora");
+        inter.adicionarCliente("aventureira");
+        inter.adicionarCliente("dora");
 
-    inter.adicionarCliente("raposo");
-    inter.adicionarCliente("dora");
-    inter.adicionarCliente("aventureira");
-    inter.adicionarCliente("dora");
+        inter.deposito(0, 100);
+        inter.deposito(1, 200);
+        inter.deposito(2, 300);
 
-    inter.deposito(0, 100);
-    inter.deposito(1, 200);
-    inter.deposito(2, 300);
+        cout << inter << endl;
 
-    cout << inter << endl;
+        inter.saque(0, 50);
+        inter.saque(1, 100);
+        inter.saque(2, 150);
 
-    inter.saque(0, 50);
-    inter.saque(1, 100);
-    inter.saque(2, 150);
+        cout << inter;
 
-    cout << inter;
+        inter.transferir(0, 1, 50);
+        inter.transferir(1, 2, 100);
+        inter.transferir(2, 0, 150);
 
-    inter.transferir(0, 1, 50);
-    inter.transferir(1, 2, 100);
-    inter.transferir(2, 0, 150);
-
-    cout << inter;
-
+        cout << inter;
+    }catch(invalid_argument& e){
+        cout << e.what() << endl;
+    }
    
 }
 
